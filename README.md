@@ -49,6 +49,7 @@ import torch.nn as nn
 import torch
 from PhaseSPDNet.SPDNet_Ver import SPDNet
 from PhaseSPDNet.StandardScaler import StandardScaler_Epoch
+from PhaseSPDNet.Connectivities import Connectivities, NearestSPD
 
 wandb.login(key="API_KEY")
 wandb_run = wandb.init(project="Project_Name", name="Add_Your_Name", dir=path, reinit=True)
@@ -118,6 +119,17 @@ pipelines["Phase-SPDNet(Optuna)"] = Pipeline(steps=[
     ("Transform4D", Transform4D()),
     ("SPDNet", clf)
 ])
+
+# For Imaginary coherence, similarly for instantaneous
+# pipelines["Aug_Coh_Imaginary_SPDNet(Optuna)"] = Pipeline([
+#    ("augmenteddataset", AugmentedDataset()),
+#    ("StandardScaler", StandardScaler_Epoch()),
+#    ("Coherence", Connectivities("imaginary", fmin=fmin,
+#                                 fmax=fmax, fs=fs)),
+#    ("spd", NearestSPD()),
+#    ("Transform4D", Transform4D()),
+#    ("SPDNet", clf)
+#])
 # ====================================================================================================================
 # GridSearch
 # ====================================================================================================================
