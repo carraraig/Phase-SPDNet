@@ -44,6 +44,7 @@ import wandb
 from moabb.utils import setup_seed
 from PhaseSPDNet.CallBacks import InputShapeSetter
 from PhaseSPDNet.Transformer import Transform4D
+from PhaseSPDNet.Connectivities import Connectivities, NearestSPD
 import torch.nn as nn
 import torch
 from PhaseSPDNet.SPDNet_Ver import SPDNet
