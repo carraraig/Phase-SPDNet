@@ -31,18 +31,9 @@ from moabb.paradigms import MotorImagery
 from moabb.datasets import BNCI2014001
 from sklearn.preprocessing import LabelEncoder
 from pyriemann.estimation import Covariances
-from sklearn.model_selection import KFold
 from sklearn.pipeline import Pipeline
 from moabb.evaluations import WithinSessionEvaluation
-from sklearn.svm import SVC
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA
-from sklearn.linear_model import LogisticRegression
-from pyriemann.tangentspace import TangentSpace
-from pyriemann.spatialfilters import CSP
-from pyriemann.classification import MDM
-from pyriemann.classification import FgMDM
 from moabb.pipelines.features import AugmentedDataset
-from Feature_Extraction.Connectivities import Connectivities, NearestSPD
 from skorch import NeuralNetClassifier
 from skorch.dataset import ValidSplit
 from geoopt.optim import RiemannianAdam
@@ -51,24 +42,12 @@ from skorch.callbacks import EarlyStopping, EpochScoring
 from skorch.callbacks import WandbLogger
 import wandb
 from moabb.utils import setup_seed
-from Feature_Extraction.CallBacks import InputShapeSetter
-from Feature_Extraction.Transformer import Transform4D
-import torchspdnet_modified as spdnet
+from PhaseSPDNet.CallBacks import InputShapeSetter
+from PhaseSPDNet.Transformer import Transform4D
 import torch.nn as nn
 import torch
-from src.models.SPDNet_Ver import SPDNet
-from src.feature_extraction.StandardScaler import StandardScaler_Epoch
-
-# Create a path and folder for every subject
-dataset = "BNCI2014001"
-algorithm = "AugCovSPDNet"
-subject = str(param[0])
-path__ = "/home/icarrara/Documents/Project/HolographicEEG_NEW/Results_Takens_TRUE_3Ch_Optuna/MOABB_lhrh/" + dataset
-os.makedirs(path__, exist_ok=True)
-path_ = os.path.join(path__, algorithm)
-os.makedirs(path_, exist_ok=True)
-path = os.path.join(path_, "Subject_" + subject)
-os.makedirs(path, exist_ok=True)
+from PhaseSPDNet.models.SPDNet_Ver import SPDNet
+from PhaseSPDNet.StandardScaler import StandardScaler_Epoch
 
 wandb.login(key="API_KEY")
 wandb_run = wandb.init(project="Project_Name", name="Add_Your_Name", dir=path, reinit=True)
