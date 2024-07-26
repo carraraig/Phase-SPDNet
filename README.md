@@ -46,7 +46,7 @@ from PhaseSPDNet.CallBacks import InputShapeSetter
 from PhaseSPDNet.Transformer import Transform4D
 import torch.nn as nn
 import torch
-from PhaseSPDNet.models.SPDNet_Ver import SPDNet
+from PhaseSPDNet.SPDNet_Ver import SPDNet
 from PhaseSPDNet.StandardScaler import StandardScaler_Epoch
 
 wandb.login(key="API_KEY")
